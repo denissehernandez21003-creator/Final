@@ -1,0 +1,131 @@
+---
+title: "How Lifestyle Habits Affect Sleep Quality and Daily Performance"
+format: html
+editor: visual
+author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
+---
+
+# ![](KSU_on%20light%20backgrounds/KSU_PNG%20LOGO/MB_Vert_3Clr.png){width="136"}
+
+## Table of content
+
++------+---+
+| -    |   |
++------+---+
+| -    |   |
++------+---+
+| -    |   |
++------+---+
+| -    |   |
++------+---+
+
+## Introduction
+
+Sleep is really important for our health and how we function every day. But a lot of people don’t get good sleep because of things like stress, too much screen time, long work hours, or drinking caffeine late. When people don’t sleep well they feel tired can’t focus and don’t perform as well during the day. This project is important because it looks at how daily habits affect sleep quality and performance. By using this data we can figure out what helps people sleep better and what makes sleep worse. This can help people make better choices and improve their daily lives.
+
+## Data
+
+```{r}
+sleep_health_dataset <- read.csv("sleep_health_dataset.csv")
+head(sleep_health_dataset)
+
+```
+
+## Data Wrangling
+
+```{r}
+
+
+
+```
+
+## Data visualization
+
+### Histogram for sleep quality score
+
+```{r}
+
+```
+
+### Top 10 of best sleepers vs the worst sleepers
+
+```{r}
+
+
+```
+
+### Histogram for sleep duration hrs
+
+```{r}
+
+```
+
+### Boxplot for sleep quality by gender
+
+```{r}
+
+```
+
+### Boxplot for sleep quality by occupation
+
+```{r}
+
+```
+
+### Boxplot for performance by mental health
+
+```{r}
+
+```
+
+### Scatterplot for stress vs sleep quality
+
+```{r}
+
+```
+
+### Scatterplot for sleep vs performance
+
+```{r}
+
+```
+
+### Scatterplot for screen time vs sleep
+
+```{r}
+
+```
+
+### Bar chart for sleep quality by country
+
+```{r}
+
+
+```
+
+### Bar chart for performance by exercise
+
+```{r}
+
+```
+
+### Kennesaw State University Map
+
+```{r}
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(
+    lng = -84.615,
+    lat = 34.023,
+    popup = "Kennesaw State University"
+  )
+```
+
+### Emails
+
+-   edloss2\@Students.kennesaw.edu
+
+-   mcarl\@Students.kennesaw.edu
+
+-   dherna84\@students.kennesaw.edu
