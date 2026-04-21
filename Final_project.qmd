@@ -104,56 +104,56 @@ ggplot(sleep_health_dataset, aes(x = sleep_quality_score))+
 
 ```
 
-### Histogram for sleep duration hrs
+### graphic  3
 
 ```{r}
 
 ```
 
-### Boxplot for sleep quality by gender
+### graphic 4
 
 ```{r}
 
 ```
 
-### Boxplot for sleep quality by occupation
+### graphic 5
 
 ```{r}
 
 ```
 
-### Boxplot for performance by mental health
+### graphic 6
 
 ```{r}
 
 ```
 
-### Scatterplot for stress vs sleep quality
+### graphic 7
 
 ```{r}
 
 ```
 
-### Scatterplot for sleep vs performance
+### graphic 8
 
 ```{r}
 
 ```
 
-### Scatterplot for screen time vs sleep
+### graphic 9
 
 ```{r}
 
 ```
 
-### Bar chart for sleep quality by country
+### graphic 10
 
 ```{r}
 
 
 ```
 
-### Bar chart for performance by exercise
+### graphic 11
 
 ```{r}
 
