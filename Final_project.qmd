@@ -99,7 +99,7 @@ ggplot(sleep_health_dataset, aes(x = sleep_quality_score))+
 
 ```
 
-### graphic  3
+### graphic 3
 
 ```{r}
 
@@ -118,8 +118,6 @@ ggplot(sleep_health_dataset, aes(x = sleep_quality_score))+
 ```
 
 ### graphic 6
-
-ddh
 
 ```{r}
 
@@ -156,7 +154,7 @@ ddh
 
 ```
 
-### Contact Imformation 
+### Contact Imformation
 
 -   mcarl\@Students.kennesaw.edu
 
