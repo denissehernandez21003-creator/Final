@@ -86,6 +86,14 @@ head(sleep_health_dataset$sleep_group)
 ### Histogram for sleep quality score
 
 ```{r}
+library(ggplot2)
+ggplot(sleep_health_dataset, aes(x = sleep_quality_score))+
+  geom_histogram(bins = 20, fill = "darkblue")+
+  labs(
+    titles = "Histogram of Sleep Quality Score",
+    x = "Sleep Quality Score",
+    y = "Count"
+  )
 
 ```
 
