@@ -119,6 +119,8 @@ ggplot(sleep_health_dataset, aes(x = sleep_quality_score))+
 
 ### graphic 6
 
+ddh
+
 ```{r}
 
 ```
