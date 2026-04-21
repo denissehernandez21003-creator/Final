@@ -171,5 +171,3 @@ leaflet() %>%
 -   mcarl\@Students.kennesaw.edu
 
 -   dherna84\@students.kennesaw.edu
-
-testing something !!
