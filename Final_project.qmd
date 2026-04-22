@@ -1,12 +1,12 @@
 ---
 title: "How Lifestyle Habits Affect Sleep Quality and Daily Performance"
+author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
 format: html
 editor: visual
-toc: true
-author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
+#toc: true
 ---
 
-# ![](images/MB_Vert_3Clr.png){width="152"}                                        ![](Rplot.png){width="193"}
+# ![](images/MB_Vert_3Clr.png){width="152"}                                       ![](Rplot.png){width="193"}
 
 # Introduction
 
@@ -21,6 +21,10 @@ The purpose of this project is to study how lifestyle and behavioral habits affe
 We obtained a sleep health dataset from Kaggle ([Sleep_Health_Dataset](https://www.kaggle.com/datasets/mohankrishnathalla/sleep-health-and-daily-performance-dataset?resource=download)) with 100,000 records. It includes variables related to sleep, lifestyle habits, and performance, such as sleep quality, stress, screen time, and cognitive performance. Each row represents one individual’s daily data.
 
 ```{r}
+sleep_health_dataset <- read.csv("sleep_health_dataset.csv")
+```
+
+```{r}
 library(tidyverse)
 library(knitr)
 data.frame(Variable_Names = names(sleep_health_dataset))%>%
@@ -33,7 +37,7 @@ You can interact with the data using the search box
 
 ```{r}
 library(DT)
-datatable(sleep_health_dataset )
+datatable(sleep_health_dataset)
 ```
 
 # Analysis
