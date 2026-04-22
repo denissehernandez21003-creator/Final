@@ -6,7 +6,7 @@ editor: visual
 toc: true
 ---
 
-# ![](images/MB_Vert_3Clr.png){width="152"}                                       ![](Rplot.png){width="193"}
+# ![](MB_Vert_3Clr.png){width="163"}                                      ![](Rplot.png){width="193"}
 
 # Introduction
 
