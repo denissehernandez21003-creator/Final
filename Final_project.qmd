@@ -1,9 +1,11 @@
 ---
 title: "How Lifestyle Habits Affect Sleep Quality and Daily Performance"
 author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
-format: html
+format:
+  html:
+    toc: true
+    embed-resources: true
 editor: visual
-toc: true
 ---
 
 # ![](MB_Vert_3Clr.png){width="150"}                  
