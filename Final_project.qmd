@@ -6,7 +6,7 @@ editor: visual
 toc: true
 ---
 
-# ![](MB_Vert_3Clr.png){width="163"}                                      ![](Rplot.png){width="193"}
+# ![](MB_Vert_3Clr.png){width="150"}                  
 
 # Introduction
 
@@ -47,8 +47,8 @@ datatable(sleep_health_dataset)
 ## Data Wrangling
 
 ```{r}
-library(tidyverse)
-glimpse(sleep_health_dataset)
+#library(tidyverse)
+#glimpse(sleep_health_dataset)
 
 ```
 
