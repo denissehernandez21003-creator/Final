@@ -18,6 +18,8 @@ The purpose of this project is to study how lifestyle and behavioral habits affe
 
 # Data
 
+We obtained a sleep health dataset from Kaggle ([Sleep_Health_Dataset](https://www.kaggle.com/datasets/mohankrishnathalla/sleep-health-and-daily-performance-dataset?resource=download)) with 100,000 records. It includes variables related to sleep, lifestyle habits, and performance, such as sleep quality, stress, screen time, and cognitive performance. Each row represents one individual’s daily data.
+
 ```{r}
 library(tidyverse)
 library(knitr)
@@ -25,6 +27,13 @@ data.frame(Variable_Names = names(sleep_health_dataset))%>%
   knitr::kable(
     caption = "Variable Names in Sleep Health Dataset"
   )
+```
+
+You can interact with the data using the search box
+
+```{r}
+library(DT)
+datatable(sleep_health_dataset )
 ```
 
 # Analysis
