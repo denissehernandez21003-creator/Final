@@ -6,23 +6,28 @@ toc: true
 author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
 ---
 
-# ![](images/MB_Vert_3Clr.png){width="152"}
+# ![](images/MB_Vert_3Clr.png){width="152"}                                        ![](Rplot.png){width="193"}
 
-## Introduction
+# Introduction
 
 Sleep is really important for our health and how we function every day. But a lot of people don’t get good sleep because of things like stress, too much screen time, long work hours, or drinking caffeine late. When people don’t sleep well they feel tired can’t focus and don’t perform as well during the day. This project is important because it looks at how daily habits affect sleep quality and performance. By using this data we can figure out what helps people sleep better and what makes sleep worse. This can help people make better choices and improve their daily lives.
 
-## Project Goal
+# Project Goal
 
-## Data
+The purpose of this project is to study how lifestyle and behavioral habits affect sleep quality and daily performance.
+
+# Data
 
 ```{r}
-sleep_health_dataset <- read.csv("sleep_health_dataset.csv")
-head(sleep_health_dataset)
-
+library(tidyverse)
+library(knitr)
+data.frame(Variable_Names = names(sleep_health_dataset))%>%
+  knitr::kable(
+    caption = "Variable Names in Sleep Health Dataset"
+  )
 ```
 
-## Analysis
+# Analysis
 
 ## Target Variable Analysis
 
@@ -156,7 +161,9 @@ test
 
 ```
 
-### Contact Imformation
+# Conclusion
+
+# Contact Imformation
 
 -   mcarl\@Students.kennesaw.edu
 
