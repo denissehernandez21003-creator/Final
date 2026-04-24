@@ -8,9 +8,11 @@ format:
 editor: visual
 ---
 
-# ![](images/MB_Vert_3Clr.png)
+![](images/MB_Vert_3Clr.png){width="297"}
 
 # Introduction
+
+![](images/pexels-suhashanjar-36683338.jpg){fig-align="center" width="350"}
 
 Sleep plays a critical role in overall health and daily functioning. However, a lot of people experience poor sleep due to things like stress, excessive screen time, long work hours, or late caffeine consumption. Insufficient sleep can cause people to experience fatigue, lack of focus, and decreased performance throughout the day.
 
@@ -22,7 +24,7 @@ The purpose of this project is to study how lifestyle and behavioral habits affe
 
 # Data
 
-We obtained a sleep health dataset from Kaggle ([Sleep_Health_Dataset](https://www.kaggle.com/datasets/mohankrishnathalla/sleep-health-and-daily-performance-dataset?resource=download)) with 100,000 records. It includes variables related to sleep, lifestyle habits, and performance, such as sleep quality, stress, screen time, and cognitive performance. Each row represents one individual’s daily data.
+We obtained a sleep health dataset from Kaggle ([Sleep_Health_Dataset](https://www.kaggle.com/datasets/mohankrishnathalla/sleep-health-and-daily-performance-dataset?resource=download)) with 100,000 records. This is a synthetic dataset, meaning the data was generated but designed to reflect real-world patterns based on research studies. It includes variables related to sleep, lifestyle habits, and performance, such as sleep quality, stress, screen time, and cognitive performance. Each row represents one individual’s daily data.
 
 ```{r}
 sleep_health_dataset <- read.csv("sleep_health_dataset.csv")
