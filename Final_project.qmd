@@ -1,5 +1,5 @@
 ---
-title: "How Lifestyle Habits Affect Sleep Quality and Daily Performance"
+title: "How Lifestyle & Behavioral Habits Affect Sleep Quality and Daily Performance"
 author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
 format:
   html:
@@ -8,11 +8,13 @@ format:
 editor: visual
 ---
 
-# ![](MB_Vert_3Clr.png){width="150"}
+# ![](images/MB_Vert_3Clr.png)
 
 # Introduction
 
-Sleep is really important for our health and how we function every day. But a lot of people don’t get good sleep because of things like stress, too much screen time, long work hours, or drinking caffeine late. When people don’t sleep well they feel tired can’t focus and don’t perform as well during the day. This project is important because it looks at how daily habits affect sleep quality and performance. By using this data we can figure out what helps people sleep better and what makes sleep worse. This can help people make better choices and improve their daily lives.
+Sleep plays a critical role in overall health and daily functioning. However, a lot of people experience poor sleep due to things like stress, excessive screen time, long work hours, or late caffeine consumption. Insufficient sleep can cause people to experience fatigue, lack of focus, and decreased performance throughout the day.
+
+This project examines how lifestyle and behavioral habits influence sleep quality and daily performance. Through analyzing the dataset, we aim to identify which factors contribute to better or worse sleep outcomes, as well as examine the relationships among different variables. This understanding can help individuals make better choices and improve their daily lives.
 
 # Project Goal
 
