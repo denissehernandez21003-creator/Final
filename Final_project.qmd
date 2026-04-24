@@ -8,7 +8,7 @@ format:
 editor: visual
 ---
 
-# ![](MB_Vert_3Clr.png){width="150"}                  
+# ![](MB_Vert_3Clr.png){width="150"}
 
 # Introduction
 
