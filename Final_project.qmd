@@ -121,7 +121,7 @@ sleep_health_dataset |>
   )
 ```
 
-### Cognitive Performance Histogram
+### Cognitive Performance Histogram 
 
 ```{r}
 sleep_health_dataset |>
