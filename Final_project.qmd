@@ -104,82 +104,52 @@ summary_table |>
   )
 ```
 
-## Data Wrangling
+## Data Visualization 
 
-```{r}
-#library(tidyverse)
-#glimpse(sleep_health_dataset)
-
-```
-
-```{r}
-sleep_health_dataset <- sleep_health_dataset |>
-  select(age,gender,country,occupation,
-         sleep_duration_hrs, sleep_quality_score,
-         stress_score, mental_health_condition,
-         screen_time_before_bed_mins,
-         caffeine_mg_before_bed,
-         alcohol_units_before_bed,
-         exercise_day, work_hours_that_day,
-         day_type, cognitive_performance_score)
-
-```
-
-```{r}
-sleep_health_dataset <- sleep_health_dataset |>
-  filter(!is.na(sleep_quality_score),
-         !is.na(stress_score),
-         !is.na(cognitive_performance_score),
-         !is.na(sleep_duration_hrs))
-```
-
-```{r}
-sleep_health_dataset <- sleep_health_dataset |>
-  distinct()
-```
-
-```{r}
-sleep_health_dataset <- sleep_health_dataset |>
-  mutate(sleep_group = "")
-
-for(i in 1:nrow(sleep_health_dataset)) {
-  if(sleep_health_dataset$sleep_quality_score[i] >= 75 ){
-    sleep_health_dataset$sleep_group[i] <- "Good Sleep"
-  }
-  else{
-    sleep_health_dataset$sleep_group[i] <- "Poor Sleep"
-  }
-}
-
-head(sleep_health_dataset$sleep_group)
-```
-
-## Data visualization
-
-### Histogram for sleep quality score
+### Sleep Quality Histogram
 
 ```{r}
 library(ggplot2)
-ggplot(sleep_health_dataset, aes(x = sleep_quality_score))+
-  geom_histogram(bins = 20, fill = "darkblue")+
+sleep_health_dataset |>
+  filter(!is.na(sleep_quality_score)) |>
+  ggplot(aes(x = sleep_quality_score)) +
+  geom_histogram(bins = 20, fill = "darkblue") +
   labs(
-    titles = "Histogram of Sleep Quality Score",
+    title = "Distribution of Sleep Quality Score",
     x = "Sleep Quality Score",
+    y = "Count"
+  )
+```
+
+### Cognitive Performance Histogram
+
+```{r}
+sleep_health_dataset |>
+  filter(!is.na(cognitive_performance_score)) |>
+  ggplot(aes(x = cognitive_performance_score)) +
+  geom_histogram(bins = 20, fill = "darkblue") +
+  labs(
+    title = "Distribution of Cognitive Performance Score",
+    x = "Cognitive Performance Score",
     y = "Count"
   )
 
 ```
 
-### Top 10 of best sleepers vs the worst sleepers
+###  Stress vs Sleep Quality
 
 ```{r}
-
-
-```
-
-### graphic 3
-
-```{r}
+sleep_health_dataset |>
+  filter(!is.na(stress_score),
+         !is.na(sleep_quality_score)) |>
+  ggplot(aes(x = stress_score, y = sleep_quality_score)) +
+  geom_point() +
+  geom_smooth() +
+  labs(
+    title = "Stress Score vs Sleep Quality Score",
+    x = "Stress Score",
+    y = "Sleep Quality Score"
+  )
 
 ```
 
