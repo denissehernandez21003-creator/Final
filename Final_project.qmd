@@ -117,9 +117,11 @@ sleep_health_dataset |>
   labs(
     title = "Distribution of Sleep Quality Score",
     x = "Sleep Quality Score",
-    y = "Count"
+    y = "Freuqency"
   )
 ```
+
+This histogram shows the distribution of sleep quality scores across people in the dataset. The x-axis represents the sleep quality score and the y-axis represents the frequency. The distribution appears to be roughly centered around the middle values with most observations falling between about 4 and 7. This suggests that the majority of individuals experience moderate sleep quality. However, we do have some values at both the lower and higher ends but there are fewer people in those ranges. This means very poor or very high sleep quality is less common.
 
 ### Cognitive Performance Histogram 
 
@@ -131,20 +133,22 @@ sleep_health_dataset |>
   labs(
     title = "Distribution of Cognitive Performance Score",
     x = "Cognitive Performance Score",
-    y = "Count"
+    y = "Freuqency"
   )
 
 ```
 
-###  Stress vs Sleep Quality
+This histogram shows how cognitive performance scores are distributed. Most of the values fall in the middle range between 50 and 80, which means many individuals have moderate to high cognitive performance. The graph is slightly skewed to the right showing there are more values toward the higher end, which suggests that many individuals performed well. This shows that overall, most individuals tend to have fairly good cognitive performance, with fewer people scoring at the very low or very high ends.
+
+### Stress vs Sleep Quality
 
 ```{r}
 sleep_health_dataset |>
   filter(!is.na(stress_score),
          !is.na(sleep_quality_score)) |>
   ggplot(aes(x = stress_score, y = sleep_quality_score)) +
-  geom_point() +
-  geom_smooth() +
+  geom_point(color = "darkblue", size = 1.5 ) +
+  geom_smooth(color= "red", se = FALSE) +
   labs(
     title = "Stress Score vs Sleep Quality Score",
     x = "Stress Score",
@@ -152,6 +156,8 @@ sleep_health_dataset |>
   )
 
 ```
+
+This scatter plot shows the relationship between stress score and sleep quality score. The plot shows a clear downward trend, meaning that as stress increases, sleep quality tends to decrease. The trend line shows this relationship more clearly. Even though the points are spread out the overall pattern still shows a strong negative relationship between stress and sleep quality.
 
 ### graphic 4
 
@@ -167,10 +173,7 @@ sleep_health_dataset |>
 
 ### graphic 6
 
-test
-
 ```{r}
-
 ```
 
 ### graphic 7
@@ -198,10 +201,30 @@ test
 
 ```
 
-### graphic 11
+### Interactive Scatter plot Sleep vs Performance by Mental Health
 
 ```{r}
+library(plotly)
 
+plot_ly(
+  data = sleep_health_dataset,
+  x = ~sleep_quality_score,
+  y = ~cognitive_performance_score,
+  color = ~mental_health_condition,
+  type = "scatter",
+  mode = "markers",
+  text = ~paste(
+    "Sleep:", sleep_quality_score,
+    "<br>Performance:", cognitive_performance_score,
+    "<br>Stress:", stress_score
+  ),
+  hoverinfo = "text"
+) %>%
+  layout(
+    title = "Sleep vs Performance by Mental Health",
+    xaxis = list(title = "Sleep Quality Score"),
+    yaxis = list(title = "Cognitive Performance Score")
+  )
 ```
 
 # Conclusion
