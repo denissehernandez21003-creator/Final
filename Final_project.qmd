@@ -55,7 +55,54 @@ datatable(head(sleep_health_dataset, 10000))
 
 # Analysis
 
+This project analyzes the data across three main areas:
+
+-   Sleep quality and duration
+
+-   Relationships between sleep quality and lifestyle behaviors such as stress, screen time, caffeine use, exercise, and mental health state
+
+-   A deeper exploration of how sleep impacts daily performance, including cognitive performance and feeling rested
+
 ## Target Variable Analysis
+
+To better understand our main variables of focus, sleep_quality_score and cognitive_performance_score, we summarize the dataset by reporting the total number of records and variables, along with the average, minimum, maximum, and median values for both variables. We also examine their distributions. The results show that the average overall sleep quality score is , indicating that . We also see that the average cognitive performance score is
+
+```{r}
+library(tidyverse)
+library(knitr)
+
+options(scipen = 999)
+
+Row1 <- sleep_health_dataset |>
+  summarize(
+    Records = as.numeric(n()),
+    Variables = ncol(sleep_health_dataset),
+    Mean = mean(sleep_quality_score, na.rm = TRUE),
+    Min = min(sleep_quality_score, na.rm = TRUE),
+    Median = median(sleep_quality_score, na.rm = TRUE),
+    Max = max(sleep_quality_score, na.rm = TRUE)
+  )
+
+Row2 <- sleep_health_dataset |>
+  summarize(
+    Records = as.numeric(n()),
+    Variables = ncol(sleep_health_dataset),
+    Mean = mean(cognitive_performance_score, na.rm = TRUE),
+    Min = min(cognitive_performance_score, na.rm = TRUE),
+    Median = median(cognitive_performance_score, na.rm = TRUE),
+    Max = max(cognitive_performance_score, na.rm = TRUE)
+  )
+
+summary_table <- data.frame(rbind(Row1, Row2))
+
+rownames(summary_table) <- c("sleep_quality_score", "cognitive_performance_score")
+
+summary_table |>
+  knitr::kable(
+    caption = "Summary Statistics for Target Variables",
+    digits = 2
+  )
+```
 
 ## Data Wrangling
 
