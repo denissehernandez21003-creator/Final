@@ -1,6 +1,9 @@
 ---
 title: "How Lifestyle & Behavioral Habits Affect Sleep Quality and Daily Performance"
-author: "Stephanie De Los Santos Avila\n\n Denisse Hernandez\n\n Marshall Carl"
+author: 
+- "Stephanie De Los Santos Avila"
+- "Denisse Hernandez"
+- "Marshall Carl"
 format:
   html:
     toc: true
@@ -31,19 +34,23 @@ sleep_health_dataset <- read.csv("sleep_health_dataset.csv")
 ```
 
 ```{r}
+#| message: false
+#| warning: false
 library(tidyverse)
 library(knitr)
-data.frame(Variable_Names = names(sleep_health_dataset))%>%
+data.frame(Variable_Names = names(sleep_health_dataset)) |>
   knitr::kable(
     caption = "Variable Names in Sleep Health Dataset"
   )
 ```
 
-You can interact with the data using the search box
+You can interact with the data using the search box. (Only 10,000 rows are available to search due to original 100,000 rows being too many for an interactive data table)
 
 ```{r}
+#| message: false
+#| warning: false
 library(DT)
-datatable(sleep_health_dataset)
+datatable(head(sleep_health_dataset, 10000))
 ```
 
 # Analysis
