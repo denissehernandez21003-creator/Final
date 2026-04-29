@@ -106,7 +106,7 @@ summary_table |>
 
 ## Data Visualization
 
-### Sleep Quality Histogram
+### 1. Sleep Quality Histogram
 
 ```{r}
 #| message: false
@@ -125,7 +125,7 @@ sleep_health_dataset |>
 
 This histogram shows the distribution of sleep quality scores across people in the dataset. The x-axis represents the sleep quality score and the y-axis represents the frequency. The distribution appears to be roughly centered around the middle values with most observations falling between about 4 and 7. This suggests that the majority of individuals experience moderate sleep quality. However, we do have some values at both the lower and higher ends but there are fewer people in those ranges. This means very poor or very high sleep quality is less common.
 
-### Cognitive Performance Histogram
+### 2. Cognitive Performance Histogram
 
 ```{r}
 #| message: false
@@ -144,7 +144,7 @@ sleep_health_dataset |>
 
 This histogram shows how cognitive performance scores are distributed. Most of the values fall in the middle range between 50 and 80, which means many individuals have moderate to high cognitive performance. The graph is slightly skewed to the right showing there are more values toward the higher end, which suggests that many individuals performed well. This shows that overall, most individuals tend to have fairly good cognitive performance, with fewer people scoring at the very low or very high ends.
 
-### Stress vs Sleep Quality
+### 3. Stress vs Sleep Quality
 
 ```{r}
 #| message: false
@@ -167,7 +167,7 @@ sleep_health_dataset |>
 
 This scatter plot shows the relationship between stress score and sleep quality score. The plot shows a clear downward trend, meaning that as stress increases, sleep quality tends to decrease. The trend line shows this relationship more clearly. Even though the points are spread out the overall pattern still shows a strong negative relationship between stress and sleep quality.
 
-### Sleep Quality Score by Mental Health Condition
+### 4. Sleep Quality Score by Mental Health Condition
 
 ```{r}
 #| message: false
@@ -190,15 +190,79 @@ ggplot(sleep_health_dataset,
 
 From the stratified boxplot, we can see mental health condition does clearly impact sleep quality. Healthy adults have a median sleep quality score around 5.3/10 while those with Anxiety or Depression have a median sleep quality score of about 4.1/10. Those with both anxiety and depression have an even lower median sleepy quality score of about 3.3/10.
 
-### graphic 5
+### 5. Sleep Quality Score by Occupation
 
 ```{r}
-
+sleep_health_dataset |>
+  filter(occupation %in% c("Student", "Nurse", "Software Engineer", "Teacher", "Freelancer", "Homemaker", "Lawyer", "Retired")) |>
+  ggplot(aes(x = sleep_quality_score,
+             color = occupation)) +
+  geom_density(size = 1.2) +
+  labs(
+    title = "Distribution of Sleep Quality Score by Occupation",
+    x = "Sleep Quality Score",
+    y = "Density",
+    color = "Occupation"
+  ) +
+  scale_color_discrete(limits = c("Lawyer", "Nurse", "Student", "Software Engineer", "Teacher", "Homemaker", "Freelancer", "Retired"))
 ```
 
-### graphic 6
+The density plot shows that sleep quality varies across occupations. Retired individuals tend to have the highest sleep quality, with homemakers and freelancers coming in second and third best sleep quality. Occupations like nurses, lawyers, and students show the lowest sleep quality. This suggests that occupation may influence sleep quality due to differences in lifestyle and work demands.
 
 ```{r}
+occupation_summary <- sleep_health_dataset |> 
+  group_by(occupation) |>
+  summarize(
+    mean_sleep_quality_score = mean(sleep_quality_score, na.rm = TRUE),
+    median_sleep_quality_score = median(sleep_quality_score,na.rm = TRUE),
+    count = n()
+  ) |>
+  arrange(desc(mean_sleep_quality_score))
+
+knitr::kable(
+  occupation_summary,
+  caption = "Mean & Median Sleep Quality Score by Occupation"
+)
+```
+
+Table showing mean & median sleep quality scores for occupations, supporting the density plot above.
+
+### 6. (still choosing between the two below)
+
+```{r}
+sleep_health_dataset |>
+  sample_n(5000) |>
+  ggplot(aes(x = stress_score,
+             y = cognitive_performance_score,
+             color = mental_health_condition)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(se = FALSE) +
+  labs(
+    title = "Stress vs Cognitive Performance by Mental Health",
+    x = "Stress Score",
+    y = "Cognitive Performance Score"
+  )
+```
+
+```{r}
+sleep_health_dataset |>
+  mutate(caffeine_group = case_when(
+    caffeine_mg_before_bed == 0 ~ "None",
+    caffeine_mg_before_bed <= 100 ~ "Low (1-100)",
+    caffeine_mg_before_bed <= 300 ~ "Moderate (101-300)",
+    TRUE ~ "High (300+)"
+  )) |>
+  ggplot(aes(x = caffeine_group,
+             y = cognitive_performance_score,
+             fill = caffeine_group)) +
+  geom_boxplot() +
+  labs(
+    title = "Cognitive Performance by Caffeine Intake Before Bed",
+    x = "Caffeine Group",
+    y = "Cognitive Performance Score"
+  ) +
+  scale_x_discrete(limits = c("None", "Low (1-100)", "Moderate (101-300)", "High (300+)")) +
+  scale_fill_discrete(limits = c("None", "Low (1-100)", "Moderate (101-300)", "High (300+)"))
 ```
 
 ### graphic 7
