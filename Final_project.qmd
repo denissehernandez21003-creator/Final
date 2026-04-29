@@ -109,6 +109,8 @@ summary_table |>
 ### Sleep Quality Histogram
 
 ```{r}
+#| message: false
+#| warning: false
 library(ggplot2)
 sleep_health_dataset |>
   filter(!is.na(sleep_quality_score)) |>
@@ -126,10 +128,12 @@ This histogram shows the distribution of sleep quality scores across people in t
 ### Cognitive Performance Histogram
 
 ```{r}
+#| message: false
+#| warning: false
 sleep_health_dataset |>
   filter(!is.na(cognitive_performance_score)) |>
   ggplot(aes(x = cognitive_performance_score)) +
-  geom_histogram(bins = 20, fill = "darkblue") +
+  geom_histogram(bins = 20, fill = "plum") +
   labs(
     title = "Distribution of Cognitive Performance Score",
     x = "Cognitive Performance Score",
@@ -143,27 +147,48 @@ This histogram shows how cognitive performance scores are distributed. Most of t
 ### Stress vs Sleep Quality
 
 ```{r}
+#| message: false
+#| warning: false
 sleep_health_dataset |>
   filter(!is.na(stress_score),
          !is.na(sleep_quality_score)) |>
   ggplot(aes(x = stress_score, y = sleep_quality_score)) +
-  geom_point(color = "darkblue", size = 1.5 ) +
+  geom_point(color = "cadetblue", size = 1.5, alpha = 0.1) +
   geom_smooth(color= "red", se = FALSE) +
   labs(
     title = "Stress Score vs Sleep Quality Score",
     x = "Stress Score",
     y = "Sleep Quality Score"
-  )
+  ) +
+  scale_x_continuous(breaks = seq(0, 10, 2)) +
+  scale_y_continuous(breaks = seq(0, 10, 2))
 
 ```
 
 This scatter plot shows the relationship between stress score and sleep quality score. The plot shows a clear downward trend, meaning that as stress increases, sleep quality tends to decrease. The trend line shows this relationship more clearly. Even though the points are spread out the overall pattern still shows a strong negative relationship between stress and sleep quality.
 
-### graphic 4
+### Sleep Quality Score by Mental Health Condition
 
 ```{r}
-
+#| message: false
+#| warning: false
+ggplot(sleep_health_dataset,
+       aes(x = mental_health_condition, y = sleep_quality_score,
+           fill = mental_health_condition)) +
+  geom_boxplot() +
+  labs(
+    title = "Sleep Quality Score by Mental Health Condition",
+    x = NULL,
+    y = "Sleep Quality Score",
+    fill = "Mental Health Condition"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(breaks = seq(0, 10, 2)) +
+  scale_x_discrete(limits = c("Healthy", "Anxiety", "Depression", "Both")) +
+  scale_fill_discrete(limits = c("Healthy", "Anxiety", "Depression", "Both"))
 ```
+
+From the stratified boxplot, we can see mental health condition does clearly impact sleep quality. Healthy adults have a median sleep quality score around 5.3/10 while those with Anxiety or Depression have a median sleep quality score of about 4.1/10. Those with both anxiety and depression have an even lower median sleepy quality score of about 3.3/10.
 
 ### graphic 5
 
