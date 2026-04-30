@@ -13,7 +13,7 @@ editor: visual
 
 ![](images/MB_Vert_3Clr.png){width="297"}
 
-![](images/Screenshot 2026-04-30 at 12.31.20 PM.png){width="252" height="217"}
+![](images/Screenshot 2026-04-30 at 12.31.20 PM.png)
 
 # Introduction
 
