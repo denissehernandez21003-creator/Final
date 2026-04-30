@@ -65,7 +65,7 @@ This project analyzes the data across three main areas:
 
 ## Target Variable Analysis
 
-To better understand our main variables of focus, sleep_quality_score and cognitive_performance_score, we summarize the dataset by reporting the total number of records and variables, along with the average, minimum, maximum, and median values for both variables. We also examine their distributions. The results show that the average overall sleep quality score is , indicating that . We also see that the average cognitive performance score is
+To better understand our main variables of focus, sleep_quality_score and cognitive_performance_score, we summarize the dataset by reporting the total number of records and variables, along with the average, minimum, maximum, and median values for both variables. We also examine their distributions. The results show that the average overall sleep quality score is , indicating that \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. We also see that the average cognitive performance score is \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
 
 ```{r}
 library(tidyverse)
