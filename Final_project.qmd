@@ -310,7 +310,8 @@ plot_ly(
   layout(
     title = "Sleep vs Performance by Mental Health",
     xaxis = list(title = "Sleep Quality Score"),
-    yaxis = list(title = "Cognitive Performance Score")
+    yaxis = list(title = "Cognitive Performance Score"),
+    range = c(0, 10), autorange = FALSE
   )
 ```
 
