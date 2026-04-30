@@ -256,14 +256,24 @@ In the stratified boxplots above, we can see that as caffeine intake before bed 
 
 ```{r}
 sleep_health_dataset |>
-  filter(!is.na(screen_time_before_bed_mins),
-         !is.na(sleep_quality_score),
-         !is.na(age)) |>
-  ggplot(aes(x = screen_time_before_bed_mins, y = sleep_quality_score)) +
+  sample_n(5000) |>
+  mutate(age_cat = case_when(
+    age < 18 ~ "Under 18",
+    age < 25 ~ "18 - 24",
+    age < 35 ~ "25 - 34",
+    age < 45 ~ "35 - 44",
+    age < 55 ~ "45 - 54",
+    age >= 55 ~ "55+"
+  )) |>
+    filter(!is.na(screen_time_before_bed_mins),
+       !is.na(sleep_quality_score),
+       !is.na(age)) |>
+  ggplot(aes(x = screen_time_before_bed_mins, y = sleep_quality_score, color = age_cat)) +
     geom_point() +
     geom_smooth(method = "lm", se = FALSE) +
-    labs(x = quote('Screen Time Before Bed (minutes)'),
-         y = quote('Sleep Quality Score')
+    labs(x = quote('Screen Time Before Bed (in minutes)'),
+         y = quote('Sleep Quality Score'),
+         color = quote('Age')
          )
 
 ```
@@ -272,30 +282,39 @@ sleep_health_dataset |>
 
 ```{r}
 sleep_health_dataset |>
-    filter(!is.na(room_temperature_celsius),
+  sample_n(5000) |>
+  filter(!is.na(room_temperature_celsius),
          !is.na(sleep_quality_score),
-         !is.na(exercise_day)) |>
-    ggplot(aes(x = room_temperature_celsius, y = sleep_quality_score, )) +
-    geom_point() +
-    geom_smooth(method = "lm", se = FALSE) +
-    labs(x = quote('Room Temperature'),
-         y = quote('Sleep Quality Score')
-         )
+         !is.na(gender)) |>
+  ggplot(aes(x = room_temperature_celsius, y = sleep_quality_score, color = gender)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = quote('Room Temperature'),
+       y = quote('Sleep Quality Score'),
+       color = quote('Gender')
+       )
 ```
 
-### 9. Sleep Quality by Step Count
+### 9. Sleep Quality versus Step Count by Exercise Day
 
 ```{r}
 sleep_health_dataset |>
+  sample_n(5000) |>
+  mutate(
+    exercise_day_2 = case_when(
+      exercise_day == 0 ~ quote('Inactive Day'),
+      exercise_day == 1 ~ quote('Active Day')
+    )
+  ) |>
   filter(!is.na(steps_that_day),
          !is.na(sleep_quality_score)) |>
   ggplot(aes(x = steps_that_day, y = sleep_quality_score, 
-             color = as.factor(exercise_day))) +
+             color = as.factor(exercise_day_2))) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(x = quote('Number of Steps'),
        y = quote('Sleep Quality Score'),
-       color = 'Exercise Today?'
+       color = quote('Exercise Day')
        )
 ```
 
@@ -317,7 +336,7 @@ sleep_health_dataset |>
   )
 ```
 
-### Interactive Scatterplot of Sleep vs Performance by Mental Health Condition
+### Interactive Scatterplot of Sleep versus Performance by Mental Health Condition
 
 ```{r}
 library(plotly)
@@ -346,7 +365,7 @@ plot_ly(
 
 The Scatter plot shows a strong positive relationship between cognitive performance score and sleep quality score. Meaning that the higher the sleep quality score the higher the cognitive performance score. The Scatter plot is also colored by the mental health of the people and it shows the stress level of the person.
 
-### Interactive Scatterplot of Sleep Quality vs Sleep Duration by Country
+### Interactive Scatter Plot of Sleep Quality vs Sleep Duration (in hours) by Country
 
 ```{r}
 plot_ly(
@@ -371,7 +390,11 @@ plot_ly(
   )
 ```
 
-# Conclusion
+There is a strong positive correlation between sleep duration and sleep quality across countries. No clear differences by country seem to exist, based on the interactive plot above.
+
+#  Conclusion
+
+While we have verified the intuitive idea that sleep quality and cognitive performance are positively related, our exploration of other variables and their factors on sleep quality is less clear. Sleep duration and sleep quality have a direct relationship, and mental health category influences sleep quality. Stress and sleep quality are inversely related, and many variables seem to not predict sleep quality well. Further work could include exploring other of the variables' predictive capacity, or doing more statistical analysis of the datasets to measure the strength of their relationsihps.
 
 # Contact Imformation
 
