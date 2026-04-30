@@ -252,25 +252,53 @@ sleep_health_dataset |>
 
 In the stratified boxplots above, we can see that as caffeine intake before bed increases, cognitive performance score decreases. This is clear through seeing how the median cognitive performance scores decrease gradually as we move through higher caffeine intake groups. [Though, there is a lot of overlap in the boxplots so the effect is not strong but it does still exist.]{.underline}
 
-### graphic 7
+### 7. Sleep Quality vs. Screen Time Before Bed
 
 ```{r}
+sleep_health_dataset |>
+  filter(!is.na(screen_time_before_bed_mins),
+         !is.na(sleep_quality_score),
+         !is.na(age)) |>
+  ggplot(sleep_health_dataset, aes(x = screen_time_before_bed_mins, y = sleep_quality_score)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(x = quote('Screen Time Before Bed (minutes)'),
+         y = quote('Sleep Quality Score')
+         )
 
 ```
 
-### graphic 8
+### 8. Sleep Quality by Room Temperature
 
 ```{r}
-
+sleep_health_dataset |>
+    filter(!is.na(room_temperature_celsius),
+         !is.na(sleep_quality_score)
+         !is.na(exercise_day)) |>
+    ggplot(sleep_health_dataset, aes(x = room_temperature_celsius, y = sleep_quality_score, )) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(x = quote('Room Temperature'),
+         y = quote('Sleep Quality Score')
+         )
 ```
 
-### graphic 9
+### 9. Sleep Quality by Step Count
 
 ```{r}
-
+sleep_health_dataset |>
+  filter(!is.na(steps_that_day),
+         !is.na(sleep_quality_score)) |>
+  ggplot(aes(x = steps_that_day, y = sleep_quality_score, color = as.factor(exercise_day)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = quote('Number of Steps'),
+       y = quote('Sleep Quality Score'),
+       color = 'Exercise Today?'
+       )
 ```
 
-### graphic 10
+### 10. Stress vs Cognitive Performance by Mental Health Status
 
 ```{r}
 sleep_health_dataset |>
@@ -283,12 +311,12 @@ sleep_health_dataset |>
   labs(
     title = "Stress vs Cognitive Performance by Mental Health",
     x = "Stress Score",
-    y = "Cognitive Performance Score"
+    y = "Cognitive Performance Score",
+    color = 'Mental Health Diagnosis'
   )
-
 ```
 
-### Interactive Scatter plot Sleep vs Performance by Mental Health
+### Interactive Scatterplot of Sleep vs Performance by Mental Health Condition
 
 ```{r}
 library(plotly)
@@ -316,6 +344,31 @@ plot_ly(
 ```
 
 The Scatter plot shows a strong positive relationship between cognitive performance score and sleep quality score. Meaning that the higher the sleep quality score the higher the cognitive performance score. The Scatter plot is also colored by the mental health of the people and it shows the stress level of the person.
+
+### Interactive Scatterplot of Sleep Quality vs Sleep Duration by Country
+
+```{r}
+plot_ly(
+  data = sleep_health_dataset,
+  x = ~sleep_duration_hrs,
+  y = ~sleep_quality_score,
+  color = ~country,
+  type = "scatter",
+  mode = "markers",
+  text = ~paste(
+    "Sleep Length (hours):", sleep_duration_hrs,
+    "<br>Sleep Quality:", sleep_quality_score,
+    "<br>Stress:", country
+  ),
+  hoverinfo = "text"
+) %>%
+  layout(
+    title = "Sleep Time vs Quality by Country",
+    xaxis = list(title = "Sleep Duration (hours)"),
+    yaxis = list(title = "Sleep Quality Score"),
+    range = c(0, 10), autorange = FALSE
+  )
+```
 
 # Conclusion
 
