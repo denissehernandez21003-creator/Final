@@ -357,9 +357,8 @@ plot_ly(
 ) %>%
   layout(
     title = "Sleep vs Performance by Mental Health",
-    xaxis = list(title = "Sleep Quality Score"),
-    yaxis = list(title = "Cognitive Performance Score"),
-    range = c(0, 10), autorange = FALSE
+    xaxis = list(title = "Sleep Quality Score", range = c(0, 10)),
+    yaxis = list(title = "Cognitive Performance Score")
   )
 ```
 
@@ -392,11 +391,11 @@ plot_ly(
 
 There is a strong positive correlation between sleep duration and sleep quality across countries. No clear differences by country seem to exist, based on the interactive plot above.
 
-#  Conclusion
+# Conclusion
 
 While we have verified the intuitive idea that sleep quality and cognitive performance are positively related, our exploration of other variables and their factors on sleep quality is less clear. Sleep duration and sleep quality have a direct relationship, and mental health category influences sleep quality. Stress and sleep quality are inversely related, and many variables seem to not predict sleep quality well. Further work could include exploring other of the variables' predictive capacity, or doing more statistical analysis of the datasets to measure the strength of their relationsihps.
 
-# Contact Imformation
+# Contact Information
 
 -   mcarl\@Students.kennesaw.edu
 
