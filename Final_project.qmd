@@ -61,11 +61,11 @@ This project analyzes the data across three main areas:
 
 -   Relationships between sleep quality and lifestyle behaviors such as stress, screen time, caffeine use, exercise, and mental health state
 
--   A deeper exploration of how sleep impacts daily performance, including cognitive performance and feeling rested
+-   A deeper exploration of how sleep impacts cognitive performance
 
 ## Target Variable Analysis
 
-To better understand our main variables of focus, sleep_quality_score and cognitive_performance_score, we summarize the dataset by reporting the total number of records and variables, along with the average, minimum, maximum, and median values for both variables. We also examine their distributions. The results show that the average overall sleep quality score is , indicating that SOMETHING. We also see that the average cognitive performance score is \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
+To better understand our main variables of focus, sleep_quality_score and cognitive_performance_score, we summarize the dataset by reporting the total number of records and variables, along with the average, minimum, maximum, and median values for both variables. We also examine their distributions. The results show that the [average overall sleep quality score is **4.87** with a median of **4.9**]{.underline} while the [average cognitive performance score is **59.23** with a median of **60.4**]{.underline}.
 
 ```{r}
 library(tidyverse)
@@ -142,7 +142,7 @@ sleep_health_dataset |>
 
 ```
 
-This histogram shows how cognitive performance scores are distributed. Most of the values fall in the middle range between 50 and 80, which means many individuals have moderate to high cognitive performance. The graph is slightly skewed to the right showing there are more values toward the higher end, which suggests that many individuals performed well. This shows that overall, most individuals tend to have fairly good cognitive performance, with fewer people scoring at the very low or very high ends.
+This histogram shows how cognitive performance scores are distributed. Most of the values fall in the middle range between 50 and 80, which means many individuals have moderate to high cognitive performance. The graph is slightly skewed to the left showing there are more values toward the higher end, which suggests that many individuals performed well. This shows that overall, most individuals tend to have fairly good cognitive performance, with fewer people scoring at the very low or very high ends.
 
 ### 3. Stress vs Sleep Quality
 
@@ -188,7 +188,7 @@ ggplot(sleep_health_dataset,
   scale_fill_discrete(limits = c("Healthy", "Anxiety", "Depression", "Both"))
 ```
 
-From the stratified boxplot, we can see mental health condition does clearly impact sleep quality. Healthy adults have a median sleep quality score around 5.3/10 while those with Anxiety or Depression have a median sleep quality score of about 4.1/10. Those with both anxiety and depression have an even lower median sleepy quality score of about 3.3/10.
+From the stratified boxplot, we can see mental health condition does clearly impact sleep quality. *Healthy adults* have a median sleep quality score around **5.3/10** while those with *Anxiety or Depression* have a median sleep quality score of about **4.1/10**. Those with *both anxiety and depression* have an even lower median sleepy quality score of about **3.3/10**.
 
 ### 5. Sleep Quality Score by Occupation
 
@@ -207,7 +207,7 @@ sleep_health_dataset |>
   scale_color_discrete(limits = c("Lawyer", "Nurse", "Student", "Software Engineer", "Teacher", "Homemaker", "Freelancer", "Retired"))
 ```
 
-The density plot shows that sleep quality varies across occupations. Retired individuals tend to have the highest sleep quality, with homemakers and freelancers coming in second and third best sleep quality. Occupations like nurses, lawyers, and students show the lowest sleep quality. This suggests that occupation may influence sleep quality due to differences in lifestyle and work demands.
+The density plot shows that sleep quality varies across occupations (**8** shown here). Retired individuals tend to have the highest sleep quality, with homemakers and freelancers coming in second and third best sleep quality. Occupations like nurses, lawyers, and students show the lowest sleep quality. This suggests that occupation may influence sleep quality due to differences in lifestyle and work demands.
 
 ```{r}
 occupation_summary <- sleep_health_dataset |> 
@@ -227,22 +227,7 @@ knitr::kable(
 
 Table showing mean & median sleep quality scores for occupations, supporting the density plot above.
 
-### 6. (still choosing between the two below)
-
-```{r}
-sleep_health_dataset |>
-  sample_n(5000) |>
-  ggplot(aes(x = stress_score,
-             y = cognitive_performance_score,
-             color = mental_health_condition)) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(se = FALSE) +
-  labs(
-    title = "Stress vs Cognitive Performance by Mental Health",
-    x = "Stress Score",
-    y = "Cognitive Performance Score"
-  )
-```
+### 6. Cognitive Performance by Caffeine Intake Before Bed
 
 ```{r}
 sleep_health_dataset |>
@@ -265,6 +250,8 @@ sleep_health_dataset |>
   scale_fill_discrete(limits = c("None", "Low (1-100)", "Moderate (101-300)", "High (300+)"))
 ```
 
+In the stratified boxplots above, we can see that as caffeine intake before bed increases, cognitive performance score decreases. This is clear through seeing how the median cognitive performance scores decrease gradually as we move through higher caffeine intake groups. [Though, there is a lot of overlap in the boxplots so the effect is not strong but it does still exist.]{.underline}
+
 ### graphic 7
 
 ```{r}
@@ -286,7 +273,18 @@ sleep_health_dataset |>
 ### graphic 10
 
 ```{r}
-
+sleep_health_dataset |>
+  sample_n(5000) |>
+  ggplot(aes(x = stress_score,
+             y = cognitive_performance_score,
+             color = mental_health_condition)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(se = FALSE) +
+  labs(
+    title = "Stress vs Cognitive Performance by Mental Health",
+    x = "Stress Score",
+    y = "Cognitive Performance Score"
+  )
 
 ```
 
